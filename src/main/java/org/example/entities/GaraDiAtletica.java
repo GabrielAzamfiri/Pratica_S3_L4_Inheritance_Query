@@ -10,11 +10,11 @@ import java.util.List;
 @DiscriminatorValue("GaraDiAtletica")
 public class GaraDiAtletica extends Evento {
 
-    @OneToMany
-    @JoinColumn(name = "set_atleti")
+    @ManyToMany
+
     private List<Persona> setAtleti;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "vincitore")
     private Persona vincitore;
 

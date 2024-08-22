@@ -18,7 +18,7 @@ public abstract class Evento {
     @Column(name = "titolo", nullable = false)
     protected String titolo;
 
-    @Column(name = "data_evento", nullable = false)
+    @Column(name = "data_evento", nullable = true)
     protected LocalDate dataEvento;
 
     @Column(name = "descrizione", nullable = false)
@@ -33,7 +33,7 @@ public abstract class Evento {
 
 
     @ManyToOne
-    @JoinColumn(name = "location_fk", nullable = false, unique = true)
+    @JoinColumn(name = "location_fk", nullable = false)
     protected Location locationFk;
 
     protected Evento() {
