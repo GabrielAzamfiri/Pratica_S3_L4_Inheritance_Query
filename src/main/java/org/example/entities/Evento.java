@@ -8,33 +8,35 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "event")
-public class Evento {
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipo_evento") // OPZIONALE. Serve per rinominare la colonna DTYPE (Colonna discriminante)
+public abstract class Evento {
     @Id
     @GeneratedValue
-    private UUID id;
+    protected UUID id;
 
     @Column(name = "titolo", nullable = false)
-    private String titolo;
+    protected String titolo;
 
     @Column(name = "data_evento", nullable = false)
-    private LocalDate dataEvento;
+    protected LocalDate dataEvento;
 
     @Column(name = "descrizione", nullable = false)
-    private String descrizione;
+    protected String descrizione;
 
     @Column(name = "tipoEvento", nullable = false)
     @Enumerated(EnumType.STRING)
-    private TipoEvento tipoEvento;
+    protected TipoEvento tipoEvento;
 
     @Column(name = "num_max_partecipanti", nullable = false)
-    private Integer numeroMassimoPartecipanti;
+    protected Integer numeroMassimoPartecipanti;
 
 
     @ManyToOne
     @JoinColumn(name = "location_fk", nullable = false, unique = true)
-    private Location locationFk;
+    protected Location locationFk;
 
-    public Evento() {
+    protected Evento() {
         // OBBLIGATORIO avere un costruttore vuoto nelle entities. Serve a JPA per poter ricreare degli oggetti
         // quando andremo a leggere i record di questa tabella
     }
