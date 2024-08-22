@@ -1,23 +1,21 @@
 package org.example.entities;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import org.example.entities.Enum.TipoEvento;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Entity
 @DiscriminatorValue("GaraDiAtletica")
 public class GaraDiAtletica extends Evento {
 
     @OneToMany
-    @JoinColumn(name = "set_atleti", nullable = false)
+    @JoinColumn(name = "set_atleti")
     private List<Persona> setAtleti;
 
     @OneToOne
-    @JoinColumn(name = "vincitore", nullable = false)
+    @JoinColumn(name = "vincitore")
     private Persona vincitore;
 
     public GaraDiAtletica() {

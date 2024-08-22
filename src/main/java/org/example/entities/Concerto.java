@@ -2,18 +2,20 @@ package org.example.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 import org.example.entities.Enum.GenereConcerto;
 import org.example.entities.Enum.TipoEvento;
 
 import java.time.LocalDate;
 
+@Entity
 @DiscriminatorValue("GaraDiAtletica")
 public class Concerto extends Evento {
 
-    @Column(name = "genere", nullable = false)
+    @Column(name = "genere")
     protected GenereConcerto genere;
 
-    @Column(name = "in_streaming", nullable = false)
+    @Column(name = "in_streaming")
     protected boolean inStreaming;
 
     public Concerto(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, Integer numeroMassimoPartecipanti, Location locationFk, GenereConcerto genere, boolean inStreaming) {
